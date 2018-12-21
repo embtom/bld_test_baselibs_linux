@@ -1,9 +1,9 @@
 project(test_runner)
 cmake_minimum_required(VERSION 2.8)
 
-SET(APP_TEST_BASE "pkg_embtom")
-SET(LIB_MENU_BASE "pkg_embtom")
-SET(TEST_CASES_BASE "pkg_embtom")
+SET(APP_TEST_BASE "DEP_EMBTOM_EXTERNAL")
+SET(LIB_MENU_BASE "DEP_EMBTOM_EXTERNAL")
+SET(TEST_CASES_BASE "DEP_EMBTOM_EXTERNAL")
 
 find_package(osbase REQUIRED)
 find_package(iotty REQUIRED) 

@@ -7,7 +7,7 @@ SET(UNIT_TEST_SRC test_lib_list.c)
 # if (TARGET os_basic)
 # 	LIST(APPEND PROJECT_LINK_LIBRARIES os_basic)
 # else()
-# 	LIST(APPEND PROJECT_LINK_LIBRARIES itf_lib_convention lib_thread lib_log lib_clock)
+# 	LIST(APPEND PROJECT_LINK_LIBRARIES lib_convention lib_thread lib_log lib_clock)
 # endif()
 
 INSTALL_TEST_CASE(${UNIT_TEST_SRC})

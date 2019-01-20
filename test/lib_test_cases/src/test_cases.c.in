@@ -1,0 +1,104 @@
+/*
+ * This file is part of the EMBTOM project
+ * Copyright (c) 2018-2019 Thomas Willetal 
+ * (https://github.com/tom3333)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+/* *******************************************************************
+ * includes
+ * ******************************************************************/
+
+/* frame */
+#include <lib_convention__errno.h>
+
+ /* project */
+#include <test_cases.h>
+${GEN_TEST_CASE_INCLUDES}
+
+/* *******************************************************************
+ * defines
+ * ******************************************************************/
+#define M_LIB_LIST_CONTEXT_ID			0
+#define M_LIB_LIST_BASE_ADDR			0
+
+/* *******************************************************************
+ * static data
+ * ******************************************************************/
+static struct queue_attr s_test_case_list;
+
+
+/* *******************************************************************
+ * function definition
+ * ******************************************************************/
+
+/* *******************************************************************
+ * \brief	Initialization of the subordinated test cases 
+ * ---------
+ * \remark  Start of the test cases startup hooks, necessary to register 
+ *          at the superior "test_cases" framework 
+ * ---------
+ * \return	'0', if successful, < '0' if not successful
+ * ******************************************************************/
+int test_cases__init(void)
+{   
+    int ret;
+    ret = lib_list__init(&s_test_case_list, M_LIB_LIST_CONTEXT_ID);
+    if (ret < EOK) {
+        return ret;
+    }
+
+${GEN_TEST_CASE_INIT_CALLS}
+}
+
+/* *******************************************************************
+ * \brief   register unit test at the superior "test_cases" framework
+ * ---------
+ * \remark  Each of the test cases have to be registerd to be accessiable
+ * ---------
+ * \return	'0', if successful, < '0' if not successful
+ * ******************************************************************/
+int test_cases__register(test_case_instance_t *_test_case)
+{
+    int ret;
+    if(_test_case == NULL) {
+		 return -EPAR_NULL;
+	}
+    ret = lib_list__enqueue(&s_test_case_list,&_test_case->node,M_LIB_LIST_CONTEXT_ID,M_LIB_LIST_BASE_ADDR);
+    return ret;
+}
+
+/* *******************************************************************
+ * \brief   get a list of test cases
+ * ---------
+ * \remark  List of test cases is provided as lib_list queue
+ * ---------
+ * \return	pointer to list if successful, NULL if not
+ * ******************************************************************/
+struct queue_attr* test_cases__get_list(void)
+{   
+    int ret;
+    ret = lib_list__emty(&s_test_case_list, M_LIB_LIST_CONTEXT_ID,M_LIB_LIST_BASE_ADDR);
+    if (ret != EOK) {
+		return NULL;
+	}
+    return &s_test_case_list;
+}

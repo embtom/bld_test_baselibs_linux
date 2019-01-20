@@ -8,7 +8,7 @@
             "name": "RPI Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build-RPI/test/test_runner",
+            "program": "${workspaceFolder}/build/Debug/doc/test_app_gpio/test_app_gpio",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",

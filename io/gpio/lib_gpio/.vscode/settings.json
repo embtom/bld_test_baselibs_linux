@@ -1,0 +1,51 @@
+{
+    "cmake.configureArgs": [
+        "-DLIB_GPIO_ARCHITECTURE=linux"
+    ],
+    "cmake.generator": "Unix makefile",
+    "cmake.cmakePath": "/opt/rpidk/sysroots/x86_64-pokysdk-linux/usr/bin/cmake",
+    "files.associations": {
+        "*.c++": "cpp",
+        "gpio_access.h": "c",
+        "gpio_config.h": "c",
+        "gpio_access_types.h": "c",
+        "lib_gpio.h": "c",
+        "lib_convention__errno.h": "c",
+        "lib_log.h": "c",
+        "lib_gpio_linux.h": "c",
+        "errno.h": "c",
+        "errno-base.h": "c",
+        "lib_convention__mem.h": "c",
+        "gpio_event.h": "c",
+        "lib_gpio_types.h": "c",
+        "gpio_types.h": "c",
+        "lib_gpio_config.h": "c"
+    },
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "test_app_gpio",
+                "description": "test_app_gpio",
+
+                "files": [
+                    "**/*/*test_app_gpio"
+                ],
+                "deployOnSave": [ "RPI" ]
+            }
+        ],
+
+        "targets": [
+            {
+                "type": "sftp",
+                "name": "RPI",
+                "description": "A SFTP folder",
+
+                "host": "192.168.1.40", "port": 22,
+                "user": "root", "password": "",
+
+                "dir": "/tmp"
+            }
+        ]
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+}

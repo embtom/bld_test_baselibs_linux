@@ -1,13 +1,23 @@
 {
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+    "cmake.generator": "Unix Makefiles",
+    "cmake.buildDirectory": "${workspaceRoot}/build-${buildKit}",
+    "files.associations": {
+        "*.c++": "cpp",
+        "lib_timer.h": "c",
+        "lib_thread.h": "c",
+        "lib_ser_init_itf.h": "c",
+        "stdlib.h": "c",
+        "serial_access_stm32.h": "c",
+        "lib_tty_portmux.h": "c"
+    },
     "deploy.reloaded": {
         "packages": [
             {
-                "name": "test_runner",
+                "name": "test_app_gpio",
                 "description": "test_runner",
 
                 "files": [
-                    "**/*test_runner"
+                    "**/*/*test_runner"
                 ],
                 "deployOnSave": [ "RPI" ]
             }
@@ -25,5 +35,6 @@
                 "dir": "/tmp"
             }
         ]
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
